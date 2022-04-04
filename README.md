@@ -1,4 +1,11 @@
 # 6 letter words
+
+## How to run the code:
+Type following command in console
+<code>
+dotnet run
+</code>
+
 There's a file in the root of the repository, input.txt, that contains words of varying lengths (1 to 6 characters).
 
 Your objective is to show all combinations of those words that together form a word of 6 characters. That combination must also be present in input.txt

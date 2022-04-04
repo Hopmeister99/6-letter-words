@@ -11,18 +11,27 @@ public class WordProcesser {
         foreach (string wordPart in wordParts) {
             List<string> history = new List<string>();
             history.Add(wordPart);
-            Combine(wordPart, history);
+
+            List<string> newParts = new List<string>(wordParts);
+            newParts.Remove(wordPart);
+            
+            Combine(wordPart, history, newParts);
         }
     }
 
-    private string Combine(string part, List<string> history) {
-        foreach (string wordPart in wordParts) {
+    private string Combine(string part, List<string> history, List<string> parts) {
+        foreach (string wordPart in parts) {
             string newPart = part + wordPart;
             if (sixLetterwords.Find(w => w.StartsWith(newPart)) != null) {
                 List<string> newHistory = new List<string>(history);
                 newHistory.Add(wordPart);
+
                 if (Check(newPart, newHistory)) return newPart;
-                return Combine(newPart, newHistory);
+
+                List<string> newParts = new List<string>(parts);
+                newParts.Remove(wordPart);
+
+                return Combine(newPart, newHistory, newParts);
             }
         }
         return part;
